@@ -15,9 +15,15 @@ Hello, I'm Sajda! 👋<br><br>I'm a passionate Front-End Developer with a flair 
   </tr>
 </table>
 
-<p align="center">
-  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=cutusajda&theme=dark&hide_border=false&include_all_commits=true&count_private=true&layout=compact" />
-</p>
+<table width="100%">
+  <tr>
+    <td align="center" ><img src="https://github-contributor-stats.vercel.app/api?username=cutusajda&limit=5&theme=dark&combine_all_yearly_contributions=true" /></td>
+  </tr>
+</table>
+
+
+
+
 
 
 ## 🏆 GitHub Trophies
@@ -26,8 +32,7 @@ Hello, I'm Sajda! 👋<br><br>I'm a passionate Front-End Developer with a flair 
 ### ✍️ Random Dev Quote
 ![](https://quotes-github-readme.vercel.app/api?type=horizontal&theme=radical)
 
-### 🔝 Top Contributed Repo
-![](https://github-contributor-stats.vercel.app/api?username=cutusajda&limit=5&theme=dark&combine_all_yearly_contributions=true)
+
 
 ---
 [![](https://visitcount.itsvg.in/api?id=cutusajda&icon=4&color=2)](https://visitcount.itsvg.in)
