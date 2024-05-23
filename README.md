@@ -96,7 +96,7 @@
 
 <hr/>
 
-<h2 align="center">⚡ G Stats ⚡</h2>
+<h2 align="center">⚡ Github Stats ⚡</h2>
 <br>
 <table>
   <tr>
