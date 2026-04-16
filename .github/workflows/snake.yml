@@ -4,11 +4,11 @@ permissions:
   contents: write
 
 on:
-  # Run every day at midnight UTC (you can change frequency if you want)
+  # Runs every day at 00:00 UTC (recommended frequency)
   schedule:
     - cron: "0 0 * * *"
-  
-  # Allow manual trigger from the Actions tab
+
+  # Allows manual trigger from the Actions tab
   workflow_dispatch:
 
 jobs:
@@ -19,25 +19,22 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # Generate the snake GIF + SVG
+      # Generate the Snake (GIF + SVG)
       - name: Generate Snake
         uses: Platane/snk@v3
-        id: snake-gif
         with:
           github_user_name: cutusajda
-          # Output paths (files will be generated in the dist folder)
           gif_out_path: dist/github-contribution-grid-snake.gif
           svg_out_path: dist/github-contribution-grid-snake.svg
 
-      # Optional: Show git status for debugging
-      - name: Show git status
-        run: git status
-
-      # Push the generated files to the 'output' branch
-      - name: Push changes to output branch
-        uses: crazy-max/ghaction-github-pages@v4
+      # Deploy the generated files to the "output" branch
+      - name: Deploy to output branch
+        uses: crazy-max/ghaction-github-pages@v5
         with:
           target_branch: output
           build_dir: dist
+          keep_history: false
+          allow_empty_commit: true
+          commit_message: "Update snake contribution graph"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
