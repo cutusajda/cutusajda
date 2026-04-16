@@ -5,8 +5,8 @@ permissions:
 
 on:
   schedule:
-    - cron: "0 0 * * *"     # Runs once every day at midnight UTC
-  workflow_dispatch:        # Allows manual run from Actions tab
+    - cron: "0 0 * * *"
+  workflow_dispatch:
 
 jobs:
   build:
@@ -16,11 +16,13 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # Create the output directory (fixes "Build dir does not exist")
-      - name: Create dist directory
-        run: mkdir -p dist
+      # Create output directory and a placeholder to ensure the folder exists
+      - name: Prepare output directory
+        run: |
+          mkdir -p dist
+          touch dist/.gitkeep   # This ensures the directory is not empty
 
-      # Generate the Snake (GIF + SVG)
+      # Generate the Snake (SVG + GIF)
       - name: Generate Snake
         uses: Platane/snk@v3
         with:
@@ -29,14 +31,14 @@ jobs:
             dist/github-contribution-grid-snake.svg
             dist/github-contribution-grid-snake.gif
 
-      # Deploy generated files to the "output" branch
+      # Deploy to the output branch
       - name: Deploy to output branch
         uses: crazy-max/ghaction-github-pages@v5
         with:
           target_branch: output
           build_dir: dist
           keep_history: false
-          allow_empty_commit: true
+          allow_empty_commit: false
           commit_message: "Update snake contribution graph"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
