@@ -4,12 +4,9 @@ permissions:
   contents: write
 
 on:
-  # Runs every day at 00:00 UTC (recommended frequency)
   schedule:
-    - cron: "0 0 * * *"
-
-  # Allows manual trigger from the Actions tab
-  workflow_dispatch:
+    - cron: "0 0 * * *"     # Runs once every day at midnight UTC
+  workflow_dispatch:        # Allows manual run from Actions tab
 
 jobs:
   build:
@@ -19,15 +16,20 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      # Create the output directory (fixes "Build dir does not exist")
+      - name: Create dist directory
+        run: mkdir -p dist
+
       # Generate the Snake (GIF + SVG)
       - name: Generate Snake
         uses: Platane/snk@v3
         with:
           github_user_name: cutusajda
-          gif_out_path: dist/github-contribution-grid-snake.gif
-          svg_out_path: dist/github-contribution-grid-snake.svg
+          outputs: |
+            dist/github-contribution-grid-snake.svg
+            dist/github-contribution-grid-snake.gif
 
-      # Deploy the generated files to the "output" branch
+      # Deploy generated files to the "output" branch
       - name: Deploy to output branch
         uses: crazy-max/ghaction-github-pages@v5
         with:
